@@ -1,17 +1,18 @@
 package application;
 
-import java.util.Date;
-
-import model.entities.Department;
+import model.dao.DaoFactory;
+import model.dao.SellerDao;
 import model.entities.Seller;
 
 public class Program {
 
 	public static void main(String[] args) {
 		
-		Department obj = new Department(1, "Books");
-		Seller seller = new Seller(1, "Josesmar", "josesmargds@gmail.com", new Date(), 8000.0, obj);
-				
+			
+		//O programa conhece apenas a interface - Injeção de dependencia sem explicitar a implementação
+		SellerDao sellerDao = DaoFactory.createSellerDao();
+		Seller seller = sellerDao.findById(1);
+		
 		System.out.println(seller);
 
 	}
